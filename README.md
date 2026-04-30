@@ -67,15 +67,3 @@ Additionally, ensure:
 -Verify Actual Output and Status columns
 
 
-            
-          
-
-          
-
-
-
-
-
-
-
-x playwright show-report
