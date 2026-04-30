@@ -1,47 +1,85 @@
 # IT23665866_ITPM_ASSIGNMENT_01
 
-Automated Playwright test suite for IT3040 ITPM Assignment 1, designed to evaluate the accuracy and reliability of PixelsSuite Chat Translator when translating chat-style Singlish into Sinhala.
+Automated test suite using PixelsSuite for IT3040-ITPM to assess PixelsSuite's Singlish-to-Sinhala accuracy. It features 50 negative tests across 24 linguistic categories, including mixed-language content and slang. Designed to identify transliteration failures and evaluate robustness in real-time chat scenarios.
 
-## Application Under Test
+The primary objective is to evaluate the system's transliteration accuracy, UI stability, and robustness under diverse conditions.
 
-https://www.pixelssuite.com/chat-translator
 
-## Test Scope
 
-This project contains 50 negative test cases that identify situations where the system fails to correctly convert Singlish input into Sinhala output.
 
-The test cases cover all 24 required Singlish input types, with at least two test cases for each type. The coverage includes question forms, command forms, greetings, requests, responses, repeated words, punctuation, spelling variants, mixed English content, platform names, abbreviations, numbers, currency, dates, time formats, measurements, slang, online identifiers, and emojis.
+## 🧪 Test Suite Overview
 
-## Files
+The test suite validates 50 distinct negative scenarios focusing on transliteration failures of chat-style Singlish input.
 
-- `IT23665866_test_automation.py` - Playwright automation script
-- `IT23665866_Assignment 1 - Test cases.xlsx` - completed test case Excel file with actual output, status, input type coverage, and evidence/rationale
-- `IT23665866_Github_link.txt` - public GitHub repository link
-- `requirements.txt` - required Python packages
+### 🔹 50 Negative Functional Tests
+These tests evaluate cases where the system fails to correctly convert Singlish input into Sinhala output. The scenarios cover a wide range of informal language patterns, spelling variations, embedded English words, symbols, and real-world chat inputs.
 
-## Prerequisites
+Each test case is designed to highlight inaccuracies, misinterpretations, or inconsistencies in the transliteration process.
 
-- Python 3.11 or 3.12
-- pip
-- Google Chrome or Playwright Chromium
-- Internet access
+The test suite ensures coverage of all 24 Singlish input types, with at least two test cases per type, including:
 
-## Install Dependencies
+- Question forms  
+- Commands  
+- Greetings  
+- Requests and responses  
+- Romanization variants  
+- English word insertions  
+- App/platform names  
+- Numbers, currency, dates, and time formats  
+- Slang, emojis, and online identifiers  
 
-```powershell
+The remaining test cases include additional edge cases to further evaluate system weaknesses.
+
+
+
+
+## 📋 Prerequisites
+
+Before executing the automated test cases, ensure the following prerequisites are installed and properly configured:
+
+- Python 3.11 or 3.12 – Required to run the Playwright automation scripts  
+- pip – Used to install required Python packages  
+- Playwright – Automation framework used to execute the transliteration test cases  
+- openpyxl library – Used for reading and writing Excel files  
+- Google Chrome browser (or Chromium via Playwright) – Required for running browser-based tests  
+
+### Additionally, ensure:
+- The provided test automation project folder is extracted properly  
+- The system has internet access to access the transliteration web application  
+
+
+
+
+## ⚙️ Installation
+
+- Extract the provided automation project folder  
+- Navigate to the project directory using Command Prompt  
+
+### Install required dependencies:
+
 pip install -U pip
-pip install -r requirements.txt
+pip install playwright openpyxl
+
+
+### Install browser binaries:
+
 playwright install
-```
 
-## Run the Test Suite
 
-From this project folder, run:
 
-```powershell
-python IT23665866_test_automation.py --excel "IT23665866_Assignment 1 - Test cases.xlsx" --url "https://www.pixelssuite.com/chat-translator" --wait-ms 5000 --type-delay-ms 80 --slow-mo-ms 200 --save-every 1 --keep-open
-```
 
-## View Results
 
-After execution, open `IT23665866_Assignment 1 - Test cases.xlsx` and review the `Actual Output` and `Status` columns.
+## ▶️ Running the Tests
+
+Execute all 50 negative test cases using:
+
+
+python test_automation.py --excel "test_automation/Assignment 1 - Test cases.xlsx" --url "https://www.pixelssuite.com/chat-translator"
+
+
+
+
+## 📊 Viewing the Test Results
+
+- Open the Excel file after execution  
+- Verify **Actual Output** and **Status** columns  
