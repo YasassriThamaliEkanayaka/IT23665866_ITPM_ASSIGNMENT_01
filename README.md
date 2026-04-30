@@ -63,7 +63,7 @@ Additionally, ensure:
 
 📊 Viewing the Test Results 
 
--Open the Excel file after execution\n
+-Open the Excel file after execution   
 -Verify Actual Output and Status columns
 
 
