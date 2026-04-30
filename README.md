@@ -6,6 +6,7 @@ The primary objective is to evaluate the system's transliteration accuracy, UI s
 
 
 
+
 ## 🧪 Test Suite Overview
 
 The test suite validates 50 distinct negative scenarios focusing on transliteration failures of chat-style Singlish input.
@@ -31,6 +32,7 @@ The remaining test cases include additional edge cases to further evaluate syste
 
 
 
+
 ## 📋 Prerequisites
 
 Before executing the automated test cases, ensure the following prerequisites are installed and properly configured:
@@ -44,6 +46,7 @@ Before executing the automated test cases, ensure the following prerequisites ar
 ### Additionally, ensure:
 - The provided test automation project folder is extracted properly  
 - The system has internet access to access the transliteration web application  
+
 
 
 
@@ -64,10 +67,12 @@ playwright install
 
 
 
+
 ## ▶️ Running the Tests
 
 Execute all 50 negative test cases using:
           python test_automation.py --excel "test_automation/Assignment 1 - Test cases.xlsx" --url "https://www.pixelssuite.com/chat-translator"
+
 
 
 
