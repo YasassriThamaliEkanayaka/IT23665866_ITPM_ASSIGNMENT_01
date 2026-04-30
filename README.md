@@ -4,7 +4,7 @@ Automated test suite using PixelsSuite for IT3040-ITPM to assess PixelsSuite's S
 
 The primary objective is to evaluate the system's transliteration accuracy, UI stability, and robustness under diverse conditions.
 
----
+
 
 ## 🧪 Test Suite Overview
 
@@ -29,7 +29,7 @@ The test suite ensures coverage of all 24 Singlish input types, with at least tw
 
 The remaining test cases include additional edge cases to further evaluate system weaknesses.
 
----
+
 
 ## 📋 Prerequisites
 
@@ -45,7 +45,7 @@ Before executing the automated test cases, ensure the following prerequisites ar
 - The provided test automation project folder is extracted properly  
 - The system has internet access to access the transliteration web application  
 
----
+
 
 ## ⚙️ Installation
 
@@ -53,27 +53,24 @@ Before executing the automated test cases, ensure the following prerequisites ar
 - Navigate to the project directory using Command Prompt  
 
 ### Install required dependencies:
-```bash
+
 pip install -U pip
 pip install playwright openpyxl
-```
+
 
 ### Install browser binaries:
-```bash
-playwright install
-```
 
----
+playwright install
+
+
 
 ## ▶️ Running the Tests
 
 Execute all 50 negative test cases using:
+          python test_automation.py --excel "test_automation/Assignment 1 - Test cases.xlsx" --url "https://www.pixelssuite.com/chat-translator"
 
-```bash
-python test_automation.py --excel "test_automation/Assignment 1 - Test cases.xlsx" --url "https://www.pixelssuite.com/chat-translator"
-```
 
----
+
 
 ## 📊 Viewing the Test Results
 
