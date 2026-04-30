@@ -33,7 +33,7 @@ Before executing the automated test cases, ensure the following prerequisites ar
 -pip : Used to install required Python packages
 -Playwright : Automation framework used to execute the transliteration test cases
 -openpyxl library : Used for reading and writing Excel files
--Google Chrome browser (or Chromium via Playwright) : Required for running browser-based tests
+-Google Chrome browser (or Chromium via Playwright) : Required for running browser-based tests 
 
 
 Additionally, ensure:
