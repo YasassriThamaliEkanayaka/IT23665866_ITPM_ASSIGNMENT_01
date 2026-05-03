@@ -20,10 +20,11 @@ DEFAULT_SHEET_NAME = " Test cases"
 DEFAULT_FRONTEND_URL = os.getenv("FRONTEND_URL", "https://www.pixelssuite.com/chat-translator")
 
 DEFAULT_INPUT_COLUMN_CANDIDATES = [
-    "Singlish",
     "Input",
+    "Input Column",
     "Singlish Input",
     "Test Input",
+    "Singlish",
     "Source",
     "Sentence",
     "Text",
@@ -169,12 +170,14 @@ def _find_column_index(header_values: list, requested_name: str | None, candidat
         if n and n not in norm_to_index:
             norm_to_index[n] = i
 
-    def match(name: str) -> int | None:
+    def match(name: str, allow_partial: bool = True) -> int | None:
         n = _normalize_header(name)
         if not n:
             return None
         if n in norm_to_index:
             return norm_to_index[n]
+        if not allow_partial:
+            return None
         for i, v in indexed:
             if n in _normalize_header(v) or _normalize_header(v) in n:
                 return i
@@ -186,7 +189,12 @@ def _find_column_index(header_values: list, requested_name: str | None, candidat
             return found
 
     for c in candidates:
-        found = match(c)
+        found = match(c, allow_partial=False)
+        if found:
+            return found
+
+    for c in candidates:
+        found = match(c, allow_partial=True)
         if found:
             return found
 
