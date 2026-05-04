@@ -22,6 +22,7 @@ DEFAULT_EXCEL_CANDIDATES = [
 DEFAULT_SHEET_NAME = "Test cases"
 
 DEFAULT_FRONTEND_URL = os.getenv("FRONTEND_URL", "https://www.pixelssuite.com/chat-translator")
+DEFAULT_PANEL = "chat-sinhala"
 
 DEFAULT_INPUT_COLUMN_CANDIDATES = [
     "Input","Input Column","Singlish Input","Test Input","Singlish","Source","Sentence","Text",
@@ -77,14 +78,16 @@ def _resolve_path(p):
 
 
 def _parse_args():
-    parser = argparse.ArgumentParser(description="Run chat translator tests from an Excel sheet.")
+    parser = argparse.ArgumentParser(
+        description="Run Chat Sinhala transliteration tests from an Excel sheet."
+    )
     parser.add_argument("--excel", default=None, help="Path to the Excel test case file.")
     parser.add_argument("--url", default=DEFAULT_FRONTEND_URL, help="Frontend URL to test.")
     parser.add_argument(
         "--panel",
-        choices=["standard-sinhala", "chat-sinhala"],
-        default="standard-sinhala",
-        help="PixelsSuite Sinhala panel to open before running tests.",
+        choices=[DEFAULT_PANEL],
+        default=DEFAULT_PANEL,
+        help="PixelsSuite panel to test. This assignment is scoped to Chat Sinhala only.",
     )
     parser.add_argument("--wait-ms", type=int, default=DEFAULT_WAIT_MS, help="Wait time after each test action.")
     parser.add_argument("--type-delay-ms", type=int, default=DEFAULT_TYPE_DELAY_MS, help="Delay between typed characters.")
@@ -135,6 +138,14 @@ def _apply_evidence_rationale_bold(ws, header_row):
 
 def _header_values(ws, row):
     return [ws.cell(row=row, column=c).value for c in range(1, ws.max_column + 1)]
+
+
+def _get_worksheet(wb, sheet_name):
+    normalized_sheet_name = _normalize_header(sheet_name)
+    for name in wb.sheetnames:
+        if _normalize_header(name) == normalized_sheet_name:
+            return wb[name]
+    return wb.active
 
 
 
@@ -216,7 +227,7 @@ def _type_text(locator, text, delay_ms):
 
 
 def _select_sinhala_panel(page, panel):
-    target_text = "Standard Sinhala" if panel == "standard-sinhala" else "Chat Sinhala"
+    target_text = "Chat Sinhala"
 
     try:
         if page.get_by_text(target_text, exact=True).first.is_visible(timeout=1000):
@@ -260,7 +271,7 @@ def run_test():
         return
 
     wb = openpyxl.load_workbook(excel_path, rich_text=True)
-    ws = wb[DEFAULT_SHEET_NAME] if DEFAULT_SHEET_NAME in wb.sheetnames else wb.active
+    ws = _get_worksheet(wb, DEFAULT_SHEET_NAME)
 
     header_row = 1
     headers = _header_values(ws, header_row)
@@ -281,7 +292,7 @@ def run_test():
     ws.cell(row=header_row, column=status_col).value = "Status"
     _apply_evidence_rationale_bold(ws, header_row)
 
-    print("Starting test...")
+    print("Starting Chat Sinhala transliteration tests...")
 
     passed = 0
     failed = 0
