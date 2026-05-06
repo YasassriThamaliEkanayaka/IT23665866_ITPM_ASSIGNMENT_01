@@ -223,7 +223,7 @@ def _type_text(locator, text, delay_ms):
     locator.scroll_into_view_if_needed(timeout=3000)
     locator.click(timeout=3000)
     locator.fill("")
-    locator.type(str(text), delay=delay_ms)
+    locator.type(str(text), delay=delay_ms, timeout=120000)
 
 
 def _select_sinhala_panel(page, panel):
